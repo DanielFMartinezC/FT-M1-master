@@ -24,15 +24,15 @@ var c = function(a, b, c) {
   f(a,b,c);
   console.log(b);
 }
-c(8,9,10);
-console.log(b);
-console.log(x);
+c(8,9,10); //10 8 8 9
+console.log(b); //10
+console.log(x); // 1
 ```
 
 ```javascript
-console.log(bar);
-console.log(baz);
-foo();
+console.log(bar); // undefined
+console.log(baz); // ReferenceError
+foo(); // Hola!
 function foo() { console.log('Hola!'); }
 var bar = 1;
 baz = 2;
@@ -43,19 +43,19 @@ var instructor = "Tony";
 if(true) {
     var instructor = "Franco";
 }
-console.log(instructor);
+console.log(instructor); // Franco
 ```
 
 ```javascript
 var instructor = "Tony";
-console.log(instructor);
+console.log(instructor); // Tony
 (function() {
    if(true) {
       var instructor = "Franco";
       console.log(instructor);
    }
-})();
-console.log(instructor);
+})(); // Franco
+console.log(instructor); // Tony
 ```
 
 ```javascript
@@ -64,33 +64,33 @@ let pm = "Franco";
 if (true) {
     var instructor = "The Flash";
     let pm = "Reverse Flash";
-    console.log(instructor);
-    console.log(pm);
+    console.log(instructor); // The Flash
+    console.log(pm); // Reverse Flash
 }
-console.log(instructor);
-console.log(pm);
+console.log(instructor); // The Flash
+console.log(pm); // Franco
 ```
 ### Coerción de Datos
 
 ¿Cuál crees que será el resultado de la ejecución de estas operaciones?:
 
 ```javascript
-6 / "3"
-"2" * "3"
-4 + 5 + "px"
-"$" + 4 + 5
-"4" - 2
-"4px" - 2
-7 / 0
-{}[0]
-parseInt("09")
-5 && 2
-2 && 5
-5 || 0
-0 || 5
-[3]+[3]-[10]
-3>2>1
-[] == ![]
+6 / "3" // 2
+"2" * "3" // 6
+4 + 5 + "px" // 9px
+"$" + 4 + 5 // $9
+"4" - 2 // 2
+"4px" - 2 // NaN
+7 / 0 // Infinity
+{}[0] // undefined
+parseInt("09") // 9
+5 && 2 // 2
+2 && 5 // 5
+5 || 0 // 5
+0 || 5 // 0
+[3]+[3]-[10] //23
+3>2>1 // true
+[] == ![] // true
 ```
 
 > Si te quedó alguna duda repasá con [este artículo](http://javascript.info/tutorial/object-conversion).
@@ -102,8 +102,8 @@ parseInt("09")
 
 ```javascript
 function test() {
-   console.log(a);
-   console.log(foo());
+   console.log(a); // undefined
+   console.log(foo()); // 2
 
    var a = 1;
    function foo() {
@@ -111,7 +111,7 @@ function test() {
    }
 }
 
-test();
+test(); // debido al hosting reconoce la declaración de la variable, pero no su valor asignado, sin embrago sí es capaz de ejecutar la callback function foo() por el mismo motivo
 ```
 
 Y el de este código? :
@@ -127,7 +127,7 @@ function getFood(food) {
     return snack;
 }
 
-getFood(false);
+getFood(false); // Retorna undefined porque al ser falso el argumento de la función y por tanto la condición del if, el bloque no se ejecuta, pero al tratar de retornar la varieble snack, reconocé la declaración de la variable que está dentro del if y no la que está en el alcance global. Debido a que el condicional no se ejecuta, la variable está declarada pero no tiene un valor asignado. 
 ```
 
 
@@ -147,11 +147,11 @@ var obj = {
    }
 };
 
-console.log(obj.prop.getFullname());
+console.log(obj.prop.getFullname()); // Aurelio De Rosa
 
 var test = obj.prop.getFullname;
 
-console.log(test());
+console.log(test()); // undefined
 ```
 
 ### Event loop
@@ -162,9 +162,9 @@ Considerando el siguiente código, ¿Cuál sería el orden en el que se muestra 
 function printing() {
    console.log(1);
    setTimeout(function() { console.log(2); }, 1000);
-   setTimeout(function() { console.log(3); }, 0);
+   setTimeout(function() { console.log(3); }, 0);  
    console.log(4);
 }
 
-printing();
+printing(); //1 4 3 2 porque primero imprime lo que hago yo (1 y 4) y luego lo que hacen las WebAPis, implimiendo primero el 3 porque tarda menos que el 2
 ```
