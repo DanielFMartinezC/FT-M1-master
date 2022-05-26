@@ -56,7 +56,16 @@ Pueden utilizar class o función constructora.
 */
 
 function Queue() {
-
+  this.x = [];
+  this.enqueue = function(y) {
+    return this.x.push(y)
+  }
+  this.dequeue = function(z) {
+    return this.x.shift(z)
+  }
+  this.size = function(){
+    return this.x.length
+  }
 }
 
 // No modifiquen nada debajo de esta linea
