@@ -60,8 +60,8 @@ function Queue() {
   this.enqueue = function(y) {
     return this.x.push(y)
   }
-  this.dequeue = function(z) {
-    return this.x.shift(z)
+  this.dequeue = function() {
+    return this.x.shift()
   }
   this.size = function(){
     return this.x.length
