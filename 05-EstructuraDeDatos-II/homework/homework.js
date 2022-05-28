@@ -54,10 +54,14 @@ LinkedList.prototype.remove = function(){
 }
 
 LinkedList.prototype.search = function(x){
-  var current = this.head
+  var current = this.head;
   while(current.value !== x){
     if(current.value !== x && !current.next){
       return null
+    } else if(typeof(x) === 'function'){
+      if(x(current.value)){
+        return current.value
+      };
     }
     current = current.next;
   }
