@@ -109,24 +109,34 @@ HashTable.prototype.hash = function(value){
 };
 
 HashTable.prototype.set = function(key, value){
-  if(typeof(key) === 'string'){
-    throw 'Keys must be strings'
+  let index = this.hash(key);
+  if(this.buckets[index]){
+    this.buckets[index][key] = value;
+    return this.buckets[index][key];
   }
-  const index = this.hash(key);
   this.buckets[index] = {[key]: value};
-  return this.buckets[index][key]
+  return this.buckets[index][key];
 };
 
 HashTable.prototype.get = function(key){
   for(let i = 0; i < this.buckets.length; i++){
     if(this.buckets[i]){
-      return this.buckets[i][key]
+      if(this.buckets[i][key]){
+        return this.buckets[i][key]
+      }
     }
   }
 };
 
-HashTable.prototype.hashKey = function(key){
-  return key
+HashTable.prototype.hasKey = function(key){
+  for(let i = 0; i < this.buckets.length; i++){
+    if(this.buckets[i]){
+      if(this.buckets[i][key]){
+        return true
+      }
+    }
+  }
+  return false
 }
 
 // No modifiquen nada debajo de esta linea
