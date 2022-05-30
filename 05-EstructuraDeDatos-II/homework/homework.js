@@ -15,7 +15,6 @@ Implementar la clase LinkedList, definiendo los siguientes métodos:
 */
 
 function LinkedList() {
-  this._length = 0;
   this.head = null;
 }
 
@@ -23,7 +22,6 @@ LinkedList.prototype.add = function(value) {
   const newNode = new Node(value);
   if(!this.head) {
     this.head = newNode;
-    this._length++;
     return newNode;
   };
   var current = this.head
@@ -31,25 +29,22 @@ LinkedList.prototype.add = function(value) {
     current = current.next
   }
   current.next = newNode;
-  this._length++;
   return newNode;
 }
 
 LinkedList.prototype.remove = function(){
   if(!this.head){return null};
-  if(this._length === 1) {
+  if(!this.head.next) {
     const removedNode = this.head.value;
     this.head = null;
-    this._length--;
     return removedNode;
   }
   var current = this.head
-  while(current.next){
+  while(current.next.next){
     current = current.next
   }
-  const removedNode = current.value;
-    this.head.next = null;
-    this._length--;
+  const removedNode = current.next.value;
+    current.next = null;
     return removedNode;  
 }
 
