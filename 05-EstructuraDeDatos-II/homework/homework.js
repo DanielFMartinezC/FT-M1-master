@@ -114,8 +114,8 @@ HashTable.prototype.set = function(key, value){
 };
 
 HashTable.prototype.get = function(key){
-  for(let i = 0; i < this.buckets.length; i++){
-    if(this.buckets[i]){
+  for(let i = 0; i < this.buckets.length; i++){      //const index = this.hash(key);
+    if(this.buckets[i]){                             // if(this.buckets[index]){return this.buckets[index][key]}
       if(this.buckets[i][key]){
         return this.buckets[i][key]
       }
@@ -124,10 +124,10 @@ HashTable.prototype.get = function(key){
 };
 
 HashTable.prototype.hasKey = function(key){
-  for(let i = 0; i < this.buckets.length; i++){
-    if(this.buckets[i]){
-      if(this.buckets[i][key]){
-        return true
+  for(let i = 0; i < this.buckets.length; i++){      //const index = this.hash(key)
+    if(this.buckets[i]){                             //if(this.buckets[index]){
+      if(this.buckets[i][key]){                      //   return this.buckets[index].hasOwnProperty)
+        return true                                  //}
       }
     }
   }
