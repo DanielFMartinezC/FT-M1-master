@@ -62,24 +62,34 @@ function insertionSort(array) {
   // Devolver el array ordenado resultante
   // Tu código:
   for(let i = 1; i < array.length; i++){
-    for(let j = i - 1; j >= 0; j--){
-      if(array[i] < array[j]){
-        let pointer = array[j];
-        array[j] = array[i];
-        array[i] = pointer;
-      }
+    let j = i - 1;
+    let pointer = array[i];
+    while(j >= 0 && array[j] > pointer){
+      array[j + 1] = array[j];
+      j--;
     }
+    array[j + 1] = pointer;
   }
   return array
 }
-
 
 function selectionSort(array) {
   // Implementar el método conocido como selectionSort para ordenar de menor a mayor
   // el array recibido como parámetro utilizando dos arreglos
   // Devolver el array ordenado resultante
   // Tu código:
-
+  for(let i = 0; i < array.length; i++){
+    for(let j = i + 1; j < array.length; j++){
+      var min = i;
+      if(array[j] < array[min]){
+        min = j
+      };
+      var pointer = array[i]
+      array[i] = array[min];
+      array[min] = pointer;
+    }
+  }
+  return array
 }
 
 

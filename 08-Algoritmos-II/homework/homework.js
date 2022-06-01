@@ -54,6 +54,11 @@ function mergeSort(array) {
         vacio.push(mergeSort(arrayLeft)[i]);
         i++
       }
+      if(mergeSort(arrayLeft).length !== mergeSort(arrayRigth).length){
+        if(mergeSort(arrayLeft).length > mergeSort(arrayRigth).length){
+          
+        }
+      }
     }
   }
   return vacio
