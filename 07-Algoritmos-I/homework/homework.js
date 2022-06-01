@@ -40,6 +40,19 @@ function bubbleSort(array) {
   // el array recibido como parámetro
   // Devolver el array ordenado resultante
   // Tu código:
+  let swap = true;
+  while(swap){
+    swap = false;
+    for(let i = 0; i < array.length - 1; i++){
+      if(array[i] > array[i + 1]){
+        let pointer = array[i];
+        array[i] = array[i + 1];
+        array[i + 1] = pointer;
+        swap = true
+      }
+    }
+  }
+  return array
 }
 
 
@@ -48,7 +61,16 @@ function insertionSort(array) {
   // el array recibido como parámetro utilizando arreglos
   // Devolver el array ordenado resultante
   // Tu código:
-
+  for(let i = 1; i < array.length; i++){
+    for(let j = i - 1; j >= 0; j--){
+      if(array[i] < array[j]){
+        let pointer = array[j];
+        array[j] = array[i];
+        array[i] = pointer;
+      }
+    }
+  }
+  return array
 }
 
 
