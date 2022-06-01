@@ -6,13 +6,10 @@ function quickSort(array) {
   // el array recibido como parámetro
   // Devolver el array ordenado resultante
   // Tu código:
-  if(array.length === 0){
-    return array
-  }
-  if(array.length === 1){
+  if(array.length === 1 || array.length === 0){
     return array
   } else {
-    var pivote = Math.ceil(Math.random() * ((array.length - 1) - 0) + 0);
+    var pivote = Math.ceil(Math.random() * array.length - 1);
     var arrPivote = array[pivote]
     var arrayLeft = [];
     var arrayRigth = [];
@@ -41,6 +38,25 @@ function mergeSort(array) {
   // el array recibido como parámetro
   // Devolver el array ordenado resultante
   // Tu código:
+  if(array.length === 1 || array.length === 0){
+    return array
+  };
+  var div = Math.floor((array.length - 1) / 2);
+  var arrayLeft = array.slice(0, div+1)
+  var arrayRigth = array.slice(div+1, array.length);
+  var vacio = []
+  for(let i = 0; i < mergeSort(arrayLeft).length; i++){
+    for(let j = 0; j < mergeSort(arrayRigth).length; j++){
+      if(mergeSort(arrayLeft)[i] > mergeSort(arrayRigth)[j]){
+        vacio.push(mergeSort(arrayRigth)[j])
+      }
+      if(mergeSort(arrayLeft)[i] < mergeSort(arrayRigth)[j]){
+        vacio.push(mergeSort(arrayLeft)[i]);
+        i++
+      }
+    }
+  }
+  return vacio
 }
 
 // No modificar nada debajo de esta línea
