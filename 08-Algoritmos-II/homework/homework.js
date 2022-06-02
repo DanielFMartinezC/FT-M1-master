@@ -38,30 +38,29 @@ function mergeSort(array) {
   // el array recibido como parámetro
   // Devolver el array ordenado resultante
   // Tu código:
-  if(array.length === 1 || array.length === 0){
+  if(array.length === 1){
     return array
   };
-  var div = Math.floor((array.length - 1) / 2);
-  var arrayLeft = array.slice(0, div+1)
-  var arrayRigth = array.slice(div+1, array.length);
-  var vacio = []
-  for(let i = 0; i < mergeSort(arrayLeft).length; i++){
-    for(let j = 0; j < mergeSort(arrayRigth).length; j++){
-      if(mergeSort(arrayLeft)[i] > mergeSort(arrayRigth)[j]){
-        vacio.push(mergeSort(arrayRigth)[j])
-      }
-      if(mergeSort(arrayLeft)[i] < mergeSort(arrayRigth)[j]){
-        vacio.push(mergeSort(arrayLeft)[i]);
-        i++
-      }
-      if(mergeSort(arrayLeft).length !== mergeSort(arrayRigth).length){
-        if(mergeSort(arrayLeft).length > mergeSort(arrayRigth).length){
-          
-        }
-      }
+  var div = Math.floor(array.length / 2);
+  var arrayLeft = array.slice(0, div)
+  var arrayRight = array.slice(div);
+  return merge(mergeSort(arrayLeft),mergeSort(arrayRight))
+};
+
+function merge(arrayLeft, arrayRight){
+  let arrayLeftIndex = 0;
+  let arrayRightIndex = 0;
+  let array = [];
+  while(arrayLeftIndex < arrayLeft.length && arrayRightIndex < arrayRight.length){
+    if(arrayLeft[arrayLeftIndex] < arrayRight[arrayRightIndex]){
+      array.push(arrayLeft[arrayLeftIndex]);
+      arrayLeftIndex++
+    }else {
+      array.push(arrayRight[arrayRightIndex]);
+      arrayRightIndex++;
     }
   }
-  return vacio
+  return array.concat(arrayLeft.slice(arrayLeftIndex)).concat(arrayRight.slice(arrayRightIndex));
 }
 
 // No modificar nada debajo de esta línea
